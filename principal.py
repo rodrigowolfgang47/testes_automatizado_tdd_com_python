@@ -3,8 +3,8 @@ from leilao.dominio import Usuario, Leilao, Lance, Avaliador
 rodrigo = Usuario("rodrigo")
 pablo = Usuario('pablo')
 
-lance_pablo = Lance("pablo", 100)
-lance_rodrigo = Lance("rodrigo", 150)
+lance_pablo = Lance(pablo.nome, 100)
+lance_rodrigo = Lance(rodrigo.nome, 150)
 
 leilao = Leilao('Celular')
 
