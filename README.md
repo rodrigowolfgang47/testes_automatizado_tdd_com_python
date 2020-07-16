@@ -7,3 +7,6 @@
 - Como começar a testar com Python
 - Conhecemos a biblioteca unittest
 - Como escrever e rodar um teste com o Pycharm
+- Formas de nomear os testes;
+- Porque é importante dar nomes semânticos aos testes
+- Como isolar o cenário com o método setUp
