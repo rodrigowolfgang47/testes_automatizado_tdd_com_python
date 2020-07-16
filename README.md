@@ -1,7 +1,7 @@
 # testes_automatizado_tdd_com_python
-Criei esse repositório para os meus estudos no curso de teste automatizados na alura,
+<h1>Criei esse repositório para os meus estudos no curso de teste automatizados na alura,</h1>
 
-Neste curso aprendi:
+<h2>Neste curso aprendi:</h2>
 
 - O porquê testar
 - Como começar a testar com Python
