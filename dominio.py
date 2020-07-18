@@ -25,15 +25,22 @@ class Leilao:
         self.maior_lance = sys.float_info.min
         self.__lances = []
 
-    def propoe(self, lance: Lance):
-        self.__lances.append(lance)
-
+    def __str__(self):
         for lance in self.lances:
-            if lance.valor > self.maior_lance:
-                self.maior_lance = lance.valor
+            return f'lances do {lance.usuario.nome} foi de {lance.valor}'
 
-            if lance.valor < self.menor_lance:
-                self.menor_lance = lance.valor
+    def propoe(self, lance: Lance):
+
+        if not self.lances or self.lances[-1].usuario != lance.usuario and lance.valor > self.lances[-1].valor:
+            self.__lances.append(lance)
+            for lance in self.lances:
+                if lance.valor > self.maior_lance:
+                    self.maior_lance = lance.valor
+
+                if lance.valor < self.menor_lance:
+                    self.menor_lance = lance.valor
+        else:
+            raise ValueError('Lance invalido')
 
     @property
     def lances(self):

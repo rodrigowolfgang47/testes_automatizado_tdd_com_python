@@ -10,7 +10,7 @@ leilao.propoe(lance_pablo)
 leilao.propoe(lance_rodrigo)
 
 for lance in leilao.lances:
-    print(f"O Lance do usurário {lance.usuario} deu um lance no valor de {lance.valor}")
+    print(f"O Lance do usurário {lance.usuario.nome} deu um lance no valor de {lance.valor}")
 
 print(f"O maior lance foi {leilao.menor_lance} e o menor lance foi de {leilao.menor_lance}")
 

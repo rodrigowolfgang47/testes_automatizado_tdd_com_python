@@ -5,12 +5,15 @@
 
 - O porquê testar
 - Como começar a testar com Python
-- Conhecemos a biblioteca unittest
+- Conheci a biblioteca unittest
 - Como escrever e rodar um teste com o Pycharm
-- Formas de nomear os testes;
+- Formas de nomear os testes
 - Porque é importante dar nomes semânticos aos testes
 - Como isolar o cenário com o método setUp
 - Como realizar uma cópia rasa de lista
 - Um pouco de programação defensiva
 - Conceitos como encapsulamento e comportamento
 - Como os testes ajudam na modelagem das classes
+- Como testar exceções com a unittest
+- O que são baby steps
+- Vi que testes também são refatorados para atender as novas regras de negócio
