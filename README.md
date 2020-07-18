@@ -10,3 +10,7 @@
 - Formas de nomear os testes;
 - Porque é importante dar nomes semânticos aos testes
 - Como isolar o cenário com o método setUp
+- Como realizar uma cópia rasa de lista
+- Um pouco de programação defensiva
+- Conceitos como encapsulamento e comportamento
+- Como os testes ajudam na modelagem das classes
