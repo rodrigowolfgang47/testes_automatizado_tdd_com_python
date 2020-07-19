@@ -5,14 +5,14 @@ from leilao.dominio import Usuario, Leilao, Lance
 class TestAvaliador(TestCase):
 
     def setUp(self):
-        self.rodrigo = Usuario("rodrigo")
+        self.rodrigo = Usuario("rodrigo", 500)
         self.lance_rodrigo = Lance(self.rodrigo, 100)
         self.leilao = Leilao('Cavaco do Nicolau Maquiavel')
         self.leilao.propoe(self.lance_rodrigo)
 
 
     def test_deve_retornar_o_menor_e_maior_valor_quando_instanciado_de_forma_crescente(self):
-        pablo = Usuario('pablo')
+        pablo = Usuario('pablo', 500)
         lance_pablo = Lance(pablo, 150)
 
         self.leilao.propoe(lance_pablo)
@@ -24,7 +24,7 @@ class TestAvaliador(TestCase):
         self.assertEqual(valor_esperado_menor, self.leilao.menor_lance)
 
     def test_nao_deve_permitir_dar_um_lance_menor_que_o_anterior(self):
-        pablo = Usuario('pablo')
+        pablo = Usuario('pablo', 500)
         lance_pablo = Lance(pablo, 90)
 
         with self.assertRaises(ValueError):
@@ -36,8 +36,8 @@ class TestAvaliador(TestCase):
         self.assertEqual(100, self.leilao.menor_lance)
 
     def test_deve_retornar_o_menor_e_maior_valor_quando_forem_adicionados_mais_de_dois_lances_de_forma_crescente(self):
-        pablo = Usuario('Pablo')
-        clovis = Usuario('Clovis')
+        pablo = Usuario('Pablo', 500)
+        clovis = Usuario('Clovis', 500)
 
         lance_pablo = Lance(pablo.nome, 150)
         lance_clovis = Lance(clovis, 200)
@@ -53,7 +53,7 @@ class TestAvaliador(TestCase):
 
     def test_usuario_nao_pode_dar_dois_laces_seguidos(self):
 
-        pablo = Usuario("Pablo")
+        pablo = Usuario("Pablo", 500)
         lance_pablo = Lance(pablo, 100)
         lance_pablo200 = Lance(pablo, 200)
 
@@ -63,8 +63,8 @@ class TestAvaliador(TestCase):
 
     def test_usuario_nao_pode_dar_dois_laces_seguidos_e_se_o_proximo_usuario_pode_dar_um_lance(self):
 
-        pablo = Usuario("Pablo")
-        clovis = Usuario("clovis")
+        pablo = Usuario("Pablo", 500)
+        clovis = Usuario("clovis", 500)
         lance_pablo = Lance(pablo, 200)
         lance_pablo200 = Lance(pablo, 300)
         lance_clovis = Lance(clovis, 400)
