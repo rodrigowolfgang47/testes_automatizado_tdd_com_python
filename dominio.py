@@ -16,9 +16,12 @@ class Usuario:
         return self.__nome
 
     def propor_lance(self, leilao, valor):
-        lance = Lance(self, valor)
-        leilao.propoe(lance)
-        self.__carteira -= valor
+        if valor <= self.carteira:
+            lance = Lance(self, valor)
+            leilao.propoe(lance)
+            self.__carteira -= valor
+        else:
+            raise ValueError('valor indisponível na carteira')
 
 class Lance:
 
