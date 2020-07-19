@@ -1,5 +1,7 @@
 from leilao.dominio import Usuario, Leilao
+from leilao.tests.excecoes import LanceInvalido
 import pytest
+
 
 @pytest.fixture
 def rodrigo():
@@ -21,7 +23,7 @@ def test_deve_verificar_se_o_usuario_pode_dar_um_lance_igual_o_valor_da_carteira
 
 def test_deve_verificar_se_o_usuario_nao_pode_dar_um_lance_maior_que_o_valor_da_carteira(rodrigo, leilao):
 
-    with pytest.raises(ValueError):
+    with pytest.raises(LanceInvalido):
 
         rodrigo.propor_lance(leilao, 200)
 

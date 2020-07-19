@@ -1,4 +1,4 @@
-import sys
+from leilao.tests.excecoes import LanceInvalido
 
 
 class Usuario:
@@ -16,12 +16,15 @@ class Usuario:
         return self.__nome
 
     def propor_lance(self, leilao, valor):
-        if valor <= self.carteira:
+        if self._valor_eh_valido(valor):
             lance = Lance(self, valor)
             leilao.propoe(lance)
             self.__carteira -= valor
         else:
-            raise ValueError('valor indisponível na carteira')
+            raise LanceInvalido('valor indisponível na carteira')
+
+    def _valor_eh_valido(self, valor):
+        return valor <= self.carteira
 
 class Lance:
 
@@ -29,13 +32,12 @@ class Lance:
         self.usuario = usuario
         self.valor = valor
 
-
 class Leilao:
     def __init__(self, descricao):
         self.descricao = descricao
-        self.menor_lance = sys.float_info.max
-        self.maior_lance = sys.float_info.min
         self.__lances = []
+        self.menor_lance = 0
+        self.maior_lance = 0
 
     def __str__(self):
         for lance in self.lances:
@@ -43,18 +45,31 @@ class Leilao:
 
     def propoe(self, lance: Lance):
 
-        if not self.lances or self.lances[-1].usuario != lance.usuario and lance.valor > self.lances[-1].valor:
-            self.__lances.append(lance)
-            for lance in self.lances:
-                if lance.valor > self.maior_lance:
-                    self.maior_lance = lance.valor
+        if self._lance_valido(lance):
+            if not self._tem_lance():
+                self.menor_lance = lance.valor
 
-                if lance.valor < self.menor_lance:
-                    self.menor_lance = lance.valor
-        else:
-            raise ValueError('Lance invalido')
+            self.maior_lance = lance.valor
+            self.__lances.append(lance)
 
     @property
     def lances(self):
         return self.__lances[:]
 
+    def _tem_lance(self):
+        return self.__lances
+
+    def _usuarios_sao_diferentes(self, lance):
+        if self.lances[-1].usuario != lance.usuario:
+            return True
+        else:
+         raise LanceInvalido('O mesmo usuario não pode dar dois lances seguidos')
+
+    def _valor_maior_que_o_anterior(self, lance):
+       if lance.valor > self.lances[-1].valor:
+           return True
+       else:
+           raise LanceInvalido("O lance não pode ser menor que o ultimo lance")
+
+    def _lance_valido(self, lance):
+        return not self._tem_lance() or self._usuarios_sao_diferentes(lance) and self._valor_maior_que_o_anterior(lance)

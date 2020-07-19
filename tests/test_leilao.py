@@ -1,5 +1,6 @@
 from unittest import TestCase
 from leilao.dominio import Usuario, Leilao, Lance
+from leilao.tests.excecoes import LanceInvalido
 
 
 class TestAvaliador(TestCase):
@@ -27,7 +28,7 @@ class TestAvaliador(TestCase):
         pablo = Usuario('pablo', 500)
         lance_pablo = Lance(pablo, 90)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(LanceInvalido):
             self.leilao.propoe(lance_pablo)
 
     def test_deve_retornar_como_menor_e_como_o_mesmo_quando_houver_so_um_lance(self):
@@ -57,7 +58,7 @@ class TestAvaliador(TestCase):
         lance_pablo = Lance(pablo, 100)
         lance_pablo200 = Lance(pablo, 200)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(LanceInvalido):
             self.leilao.propoe(lance_pablo)
             self.leilao.propoe(lance_pablo200)
 
@@ -74,7 +75,7 @@ class TestAvaliador(TestCase):
             self.leilao.propoe(lance_pablo200)
             self.fail(msg="Você não adicionou a excessão")
 
-        except ValueError:
+        except LanceInvalido:
             self.leilao.propoe(lance_clovis)
             quantidade_de_lances = len(self.leilao.lances)
             valor_esperado_de_lances_na_lista = 3

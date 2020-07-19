@@ -1,7 +1,7 @@
 # testes_automatizado_tdd_com_python
-<h1>Criei esse repositório para os meus estudos no curso de teste automatizados na alura,</h1>
+<h1>Criei esse repositório para os meus estudos no <em>curso de teste automatizados</em> na alura,</h1>
 
-<h2>Neste curso aprendi:</h2>
+<h3>Neste curso aprendi:</h3>
 
 - O porquê testar
 - Como começar a testar com Python
@@ -21,3 +21,6 @@
 - Como testar exceções com ela
 - As diferenças com a biblioteca unittest
 - Onde colocar os módulos de testes
+- Criar exceções
+- Técnicas de refatoração
+- A importância de manter um código legível
